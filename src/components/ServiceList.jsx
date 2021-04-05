@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeService, fetchServices } from "../actions/actionCreators";
+import { Link } from "react-router-dom";
 
 function ServiceList(props) {
   const { items, loading, error } = useSelector((state) => state.serviceList);
-
-  //const { loading, error } = useSelector((state) => state.serviceLoading);
-
-  //console.log(loading);
 
   const dispatch = useDispatch();
 
@@ -19,25 +16,17 @@ function ServiceList(props) {
     dispatch(removeService(id));
   };
 
-  // const handleEdit = (id) => {
-  //   dispatch(removeService(id));
-  // };
-
-  if (loading) {
-    return <div class="loading">Идет загрузка</div>;
-  }
-
-  if (error) {
-    return <p>Something went wrong try again</p>;
-  }
-
   return (
     <>
+      {loading && <div className="loading">Идет загрузка</div>}
+      {error && <div className="error">Something went wrong try again</div>}
       <ul>
         {items.map((o) => (
           <li key={o.id}>
             {o.name} {o.price}
-            <button /*onClick={() => handleEdit(o.id)}*/>✎</button>
+            <Link to={`/services/${o.id}`}>
+              <button>✎</button>
+            </Link>
             <button onClick={() => handleRemove(o.id)}>✕</button>
           </li>
         ))}

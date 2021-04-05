@@ -7,9 +7,6 @@ import {
   ADD_SERVICE_FAILURE,
   ADD_SERVICE_SUCCESS,
   REMOVE_SERVICE,
-  // SERVICE_LOADING_REQUEST,
-  // SERVICE_LOADING_FAILURE,
-  // SERVICE_LOADING_SUCCESS,
 } from "./actionTypes";
 
 export const fetchServicesRequest = () => ({
@@ -64,22 +61,8 @@ export const removeService = (id) => ({
   },
 });
 
-// export const serviceLoadingRequest = () => ({
-//   type: SERVICE_LOADING_REQUEST,
-// });
-
-// export const serviceLoadingFailure = (error) => ({
-//   type: SERVICE_LOADING_FAILURE,
-//   payload: { error },
-// });
-
-// export const serviceLoadingSuccess = () => ({
-//   type: SERVICE_LOADING_SUCCESS,
-// });
-
 export const fetchServices = async (dispatch) => {
   dispatch(fetchServicesRequest());
-  // dispatch(serviceLoadingRequest());
   try {
     const response = await fetch(
       "https://ra-11-task-1-server.herokuapp.com/api/services"
@@ -89,7 +72,6 @@ export const fetchServices = async (dispatch) => {
     }
     const data = await response.json();
     console.log(data);
-    // dispatch(serviceLoadingSuccess());
     dispatch(fetchServicesSuccess(data));
   } catch (e) {
     dispatch(fetchServicesFailure(e.message));

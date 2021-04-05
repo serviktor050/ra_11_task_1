@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import Services from "./Services";
-import ServicePage from "../Pages/ServicePage";
+import Services from "./Services.jsx";
+import ServicePage from "./ServicePage.jsx";
 
 export default function Home() {
   return (
@@ -10,10 +10,11 @@ export default function Home() {
       <Redirect from="/" to="/services" />
       <Switch>
         <Route path="/services" render={(props) => <Services {...props} />} />
-        <Route
+        <Route path="/services/:id" component={ServicePage} />
+        {/* <Route
           path="/services/:id"
           render={(props) => <ServicePage {...props} />}
-        />
+        /> */}
       </Switch>
     </Router>
   );

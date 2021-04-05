@@ -1,10 +1,10 @@
 import React from "react";
-import SetviceList from "../ServiceList";
+import ServiceList from "../ServiceList.jsx";
 
 export default function Services(props) {
   return (
     <div className="service-list">
-      <SetviceList />
+      <ServiceList />
     </div>
   );
 }
