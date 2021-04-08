@@ -18,19 +18,25 @@ function ServiceList(props) {
 
   return (
     <>
-      {loading && <div className="loading">Идет загрузка</div>}
-      {error && <div className="error">Something went wrong try again</div>}
-      <ul>
-        {items.map((o) => (
-          <li key={o.id}>
-            {o.name} {o.price}
-            <Link to={`/services/${o.id}`}>
-              <button>✎</button>
-            </Link>
-            <button onClick={() => handleRemove(o.id)}>✕</button>
-          </li>
-        ))}
-      </ul>
+      {loading && <div className="loading"></div>}
+      {error && <div className="error">Ошибка загрузки данных</div>}
+      {!loading && !error && (
+        <>
+          {items.map((o) => (
+            <div className="service-item" key={o.id}>
+              <div className="service-name-and-price">
+                {o.name} {o.price}
+              </div>
+              <div className="service-buttons">
+                <Link to={`/services/${o.id}`}>
+                  <button>✎</button>
+                </Link>
+                <button onClick={() => handleRemove(o.id)}>✕</button>
+              </div>
+            </div>
+          ))}
+        </>
+      )}
     </>
   );
 }

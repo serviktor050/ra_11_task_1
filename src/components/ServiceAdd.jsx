@@ -23,7 +23,7 @@ function ServiceAdd() {
       <button type="submit" disabled={loading}>
         Save
       </button>
-      {error && <p>Something went wrong try again</p>}
+      {error && <div className="error">Ошибка загрузки данных</div>}
     </form>
   );
 }

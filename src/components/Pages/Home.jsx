@@ -9,12 +9,8 @@ export default function Home() {
     <Router>
       <Redirect from="/" to="/services" />
       <Switch>
-        {/* <Route path="/services/:id" component={ServiceChoose} /> */}
-        <Route
-          path="/services/:id"
-          render={(props) => <ServiceChoose {...props} />}
-        />
-        <Route path="/services" render={(props) => <Services {...props} />} />
+        <Route path="/services/:id" component={ServiceChoose} />
+        <Route path="/services" component={Services} />
       </Switch>
     </Router>
   );

@@ -3,14 +3,28 @@ import {
   SERVICE_CHOOSE_REQUEST,
   SERVICE_CHOOSE_FAILURE,
   SERVICE_CHOOSE_SUCCESS,
+  EDIT_SERVICE_REQUEST,
+  EDIT_SERVICE_FAILURE,
+  EDIT_SERVICE_SUCCESS,
 } from "../actions/actionTypes";
 
+// const initialState = {
+//   item: { name: "", price: "", content: ""  },
+//   loading: false,
+//   error: null,
+// };
 const initialState = {
-  item: { name: "", price: "", content: "" },
+  item: {
+    name: "",
+    price: "",
+    content: "",
+    loadingEdit: false,
+    errorEdit: null,
+    editComplete: false,
+  },
   loading: false,
   error: null,
 };
-
 export default function serviceChooseReducer(state = initialState, action) {
   switch (action.type) {
     case SERVICE_CHOOSE_REQUEST:
@@ -41,6 +55,29 @@ export default function serviceChooseReducer(state = initialState, action) {
         item: {
           ...state.item,
           [name]: value,
+        },
+      };
+    case EDIT_SERVICE_REQUEST:
+      return {
+        ...state,
+        item: {
+          loadingEdit: true,
+        },
+      };
+    case EDIT_SERVICE_FAILURE:
+      //const { error } = action.payload;
+      return {
+        ...state,
+        item: {
+          loadingEdit: false,
+          errorEdit: action.payload.error,
+        },
+      };
+    case EDIT_SERVICE_SUCCESS:
+      return {
+        ...state,
+        item: {
+          editComplete: true,
         },
       };
     default:
